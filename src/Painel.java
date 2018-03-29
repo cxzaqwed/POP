@@ -31,7 +31,7 @@ public class Painel extends JPanel {
         pts.add(new Ponto(300, 200));
 
         
-        //formas.add(new PoliLinha(pts));
+        formas.add(new Polilinha(pts));
     }
 
     @Override

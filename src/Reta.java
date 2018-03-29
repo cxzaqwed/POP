@@ -109,6 +109,7 @@ public class Reta extends Forma{
         float proporcao = (dy > dx) ? Math.abs((float) dy / (float) dx) : Math.abs((float) dx / (float) dy);
         float erro = 0.0f;
         
+        super.desenhaPixel(g, x, y);
         while (x < x2){
             if (erro < 0.5f){
                 x += incrX;

@@ -1,10 +1,10 @@
 import java.awt.*;
 import java.util.*;
 
-public class PoliLinha extends Forma {
+public class Polilinha extends Forma {
     private ArrayList<Ponto> pontos;
     
-    public PoliLinha(ArrayList<Ponto> pts){
+    public Polilinha(ArrayList<Ponto> pts){
         this.pontos = pts;
     }
     
@@ -21,8 +21,6 @@ public class PoliLinha extends Forma {
                 new Reta(pontos.get(i), pontos.get(i + 1)).desenhar(g);
                 i++;
             }
-            // o último ponto é ligado ao primeiro
-            new Reta(pontos.get(i), pontos.get(0)).desenhar(g);
         }
     }
     
