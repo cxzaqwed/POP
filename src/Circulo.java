@@ -15,7 +15,7 @@ public class Circulo extends Forma {
         
     }
     // https://www.geeksforgeeks.org/bresenhams-circle-drawing-algorithm/
-    void Bresenham(Graphics g, int xc, int yc, int r)
+    void Bresenham(Graphics g, int x_centro, int y_centro, int r)
     {
         // começa do ponto p=(0,r)
         int x = 0, y = r;
@@ -25,7 +25,7 @@ public class Circulo extends Forma {
         // repete para o primeiro octante (quando x = y)
         while (y >= x)
         {   // desenha o pixel correspondente em cada octante
-            desenhaEspelhoOctantes(g, xc, yc, x, y);
+            desenhaEspelhoOctantes(g, x_centro, y_centro, x, y);
             // incrementa x
             x++;
             // decisao > 0 desenha o pixel acima e à direita
