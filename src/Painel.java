@@ -8,6 +8,8 @@ public class Painel extends JPanel {
     
     private ArrayList<Forma> formas = new ArrayList<>();
     private ArrayList<Ponto> pontos = new ArrayList<>();
+    
+    private Color cor = Color.red;
     private String modo = "Reta";
     
     
@@ -29,8 +31,10 @@ public class Painel extends JPanel {
             f.desenhar(g);
         }
         
+        // desenha os pontos onde o usuário clicou para ajudar a desenhar
         for(Ponto p: pontos){
-            new Circulo(p, 3).desenhar(g);
+            new Circulo(p, 3, Color.black).desenhar(g);
+            new Circulo(p, 5, Color.white).desenhar(g);
         }
     }
     
@@ -81,7 +85,7 @@ public class Painel extends JPanel {
                 adicionarPonto(new Ponto(me.getX(), me.getY()));
                 
                 if (pontos.size() >= 2){
-                    adicionarForma(new Reta(pontos.get(0), pontos.get(1)));
+                    adicionarForma(new Reta(pontos.get(0), pontos.get(1), cor));
                     pontos.clear();
                 }
             }
@@ -90,7 +94,7 @@ public class Painel extends JPanel {
                 adicionarPonto(new Ponto(me.getX(), me.getY()));
                 
                 if (pontos.size() >= 2){
-                    adicionarForma(new Quadrado(pontos.get(0), new Ponto(pontos.get(0).getX(), pontos.get(1).getY()), new Ponto(pontos.get(1).getX(), pontos.get(0).getY()), pontos.get(1)));
+                    adicionarForma(new Quadrado(pontos.get(0), new Ponto(pontos.get(0).getX(), pontos.get(1).getY()), new Ponto(pontos.get(1).getX(), pontos.get(0).getY()), pontos.get(1), cor));
                     pontos.clear();
                 }
             }
@@ -99,7 +103,7 @@ public class Painel extends JPanel {
                 adicionarPonto(new Ponto(me.getX(), me.getY()));
                 
                 if (pontos.size() >= 2){
-                    adicionarForma(new Circulo(pontos.get(0), (int) pontos.get(0).distancia(pontos.get(1))));
+                    adicionarForma(new Circulo(pontos.get(0), (int) pontos.get(0).distancia(pontos.get(1)), cor));
                     pontos.clear();
                 }
             }
@@ -131,12 +135,12 @@ public class Painel extends JPanel {
             // tecla enter
             if(ke.getKeyCode() == 10){
                 if(modo.equals("Polilinha")){
-                    adicionarForma(new Polilinha(new ArrayList(pontos)));
+                    adicionarForma(new Polilinha(new ArrayList(pontos), cor));
                     pontos.clear();
                 }
                 
                 else if(modo.equals("Poligono")){
-                    adicionarForma(new Poligono(new ArrayList(pontos)));
+                    adicionarForma(new Poligono(new ArrayList(pontos), cor));
                     pontos.clear();
                 }
             }

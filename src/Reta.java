@@ -6,12 +6,14 @@ public class Reta extends Forma{
     private Ponto pontoFinal;
     
     
-    public Reta(Ponto pi, Ponto pf){
+    public Reta(Ponto pi, Ponto pf, Color cor){
+        super.setCor(cor);
         this.pontoInicial = pi;
         this.pontoFinal = pf;
     }
     
     public void desenhar(Graphics g){
+        g.setColor(super.getCor()); // remover quando devolver a primitiva manual
         g.drawLine(this.pontoInicial.getX(), this.pontoInicial.getY(), this.pontoFinal.getX(), this.pontoFinal.getY());
         /*if (this.pontoInicial.getX() == this.pontoFinal.getX()){
             DDA(g);

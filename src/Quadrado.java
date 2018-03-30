@@ -6,7 +6,8 @@ public class Quadrado extends Forma {
     private Ponto pontoFI;
     private Ponto pontoFF;
     
-    public Quadrado(Ponto pII, Ponto pIF, Ponto pFI, Ponto pFF){
+    public Quadrado(Ponto pII, Ponto pIF, Ponto pFI, Ponto pFF, Color cor){
+        super.setCor(cor);
         this.pontoII = pII;
         this.pontoIF = pIF;
         this.pontoFI = pFI;
@@ -14,10 +15,10 @@ public class Quadrado extends Forma {
     }
     
     public void desenhar(Graphics g){
-        new Reta(this.pontoII, this.pontoIF).desenhar(g);
-        new Reta(this.pontoFI, this.pontoFF).desenhar(g);
-        new Reta(this.pontoII, this.pontoFI).desenhar(g);
-        new Reta(this.pontoIF, this.pontoFF).desenhar(g);
+        new Reta(this.pontoII, this.pontoIF, super.getCor()).desenhar(g);
+        new Reta(this.pontoFI, this.pontoFF, super.getCor()).desenhar(g);
+        new Reta(this.pontoII, this.pontoFI, super.getCor()).desenhar(g);
+        new Reta(this.pontoIF, this.pontoFF, super.getCor()).desenhar(g);
     }
     
     public String getNome(){

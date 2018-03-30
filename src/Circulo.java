@@ -4,7 +4,8 @@ public class Circulo extends Forma {
     private Ponto pontoCentro;
     private int raio;
     
-    public Circulo(Ponto pC, int r){
+    public Circulo(Ponto pC, int r, Color cor){
+        super.setCor(cor);
         this.pontoCentro = pC;
         this.raio = r;
     }
