@@ -12,13 +12,14 @@ public class Reta extends Forma{
     }
     
     public void desenhar(Graphics g){
-        if (this.pontoInicial.getX() == this.pontoFinal.getX()){
+        g.drawLine(this.pontoInicial.getX(), this.pontoInicial.getY(), this.pontoFinal.getX(), this.pontoFinal.getY());
+        /*if (this.pontoInicial.getX() == this.pontoFinal.getX()){
             DDA(g);
         } else {
             // A ideia era usar esse mas n deu muito certo
             //Bresenham(g); 
             algoritmoNadaAVerLentoParaDesenharRetasQueEuSoFizPqOBresenhamNaoFuncionaPraTodosOsCasos(g);
-        } 
+        } */
     }
     
     public void DDA(Graphics g){
@@ -38,8 +39,6 @@ public class Reta extends Forma{
         
         float incrementoX = (float) dx / passos;
         float incrementoY = (float) dy / passos;
-        
-        System.out.println(incrementoX);
         
         for (int i = 0; i < passos; i++){
             x += incrementoX;
