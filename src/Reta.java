@@ -125,4 +125,8 @@ public class Reta extends Forma{
             super.desenhaPixel(g, x, y);
         }
     }
+    
+    public String getNome(){
+        return "Reta";
+    }
 }

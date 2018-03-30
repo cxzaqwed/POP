@@ -12,9 +12,11 @@ public class Ferramentas extends JPanel {
     private JButton botaoPolilinha;
     
     public Ferramentas(Painel p){
+        super.setBackground(Color.yellow);
         super.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         
-        
+        ButtonHandler handler = new ButtonHandler();
+          
         painel = p;
         
         botaoReta = new JButton("Reta");
@@ -32,7 +34,6 @@ public class Ferramentas extends JPanel {
         botaoPolilinha = new JButton("Polilinha");
         super.add(botaoPolilinha);
         
-        ButtonHandler handler = new ButtonHandler();
         botaoReta.addActionListener(handler);
         botaoQuadrado.addActionListener(handler);
         botaoCirculo.addActionListener(handler);

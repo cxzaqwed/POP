@@ -53,4 +53,8 @@ public class Circulo extends Forma {
         super.desenhaPixel(g, x_centro + y, y_centro - x);
         super.desenhaPixel(g, x_centro - y, y_centro - x);
     }
+    
+    public String getNome(){
+        return "Circulo";
+    }
 }

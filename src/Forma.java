@@ -4,6 +4,7 @@ public abstract class Forma {
     private Color cor = Color.BLACK;
     
     public abstract void desenhar(Graphics g);
+    public abstract String getNome();
     
     public void desenhaPixel(Graphics g, int x, int y){
         g.setColor(cor);

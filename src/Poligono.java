@@ -26,6 +26,10 @@ public class Poligono extends Forma {
         }
     }
     
+    public String getNome(){
+        return "Poligono";
+    }
+    
     public void adicionarPonto(Ponto p){
         this.pontos.add(p);
     }

@@ -24,6 +24,10 @@ public class Polilinha extends Forma {
         }
     }
     
+    public String getNome(){
+        return "Polilinha";
+    }
+    
     public void adicionarPonto(Ponto p){
         this.pontos.add(p);
     }

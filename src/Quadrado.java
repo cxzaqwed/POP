@@ -19,4 +19,8 @@ public class Quadrado extends Forma {
         new Reta(this.pontoII, this.pontoFI).desenhar(g);
         new Reta(this.pontoIF, this.pontoFF).desenhar(g);
     }
+    
+    public String getNome(){
+        return "Quadrado";
+    }
 }
