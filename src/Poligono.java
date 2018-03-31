@@ -38,4 +38,6 @@ public class Poligono extends Forma {
     public void removerPonto(Ponto p){
         this.pontos.remove(p);
     }
+    
+    public void rotacionar(float angulo){}
 }

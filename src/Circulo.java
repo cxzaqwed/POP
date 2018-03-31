@@ -58,4 +58,6 @@ public class Circulo extends Forma {
     public String getNome(){
         return "Circulo";
     }
+    
+    public void rotacionar(float angulo){}
 }

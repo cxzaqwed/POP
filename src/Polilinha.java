@@ -36,4 +36,6 @@ public class Polilinha extends Forma {
     public void removerPonto(Ponto p){
         this.pontos.remove(p);
     }
+    
+    public void rotacionar(float angulo){}
 }

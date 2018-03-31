@@ -131,4 +131,6 @@ public class Reta extends Forma{
     public String getNome(){
         return "Reta";
     }
+    
+    public void rotacionar(float angulo){}
 }

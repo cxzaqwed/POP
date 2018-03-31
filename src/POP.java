@@ -13,12 +13,12 @@ public class POP {
 
       Camadas camadas = new Camadas();
       Painel painel = new Painel(camadas);
-      Ferramentas ferramentas = new Ferramentas(painel);
-      
+      Ferramentas ferramentas = new Ferramentas(painel);   
       
       janela.add(ferramentas, BorderLayout.WEST);
       janela.add(painel, BorderLayout.CENTER);
       janela.add(camadas, BorderLayout.EAST);
+      
       janela.repaint();
    }
 }  

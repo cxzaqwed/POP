@@ -10,6 +10,7 @@ public class Ferramentas extends JPanel {
     private JButton botaoCirculo;
     private JButton botaoPoligono;
     private JButton botaoPolilinha;
+    private JButton botaoRotacao;
     
     public Ferramentas(Painel p){
         super.setBackground(Color.yellow);
@@ -34,11 +35,15 @@ public class Ferramentas extends JPanel {
         botaoPolilinha = new JButton("Polilinha");
         super.add(botaoPolilinha);
         
+        botaoRotacao = new JButton("Rotacao");
+        super.add(botaoRotacao);
+        
         botaoReta.addActionListener(handler);
         botaoQuadrado.addActionListener(handler);
         botaoCirculo.addActionListener(handler);
         botaoPoligono.addActionListener(handler);
         botaoPolilinha.addActionListener(handler);
+        botaoRotacao.addActionListener(handler);
     }
     
     public Painel getPainel(){
@@ -61,6 +66,13 @@ public class Ferramentas extends JPanel {
             }
             else if(event.getActionCommand().equals("Polilinha")){
                 painel.setModo("Polilinha");
+            }
+            else if(event.getActionCommand().equals("Rotacao")){
+                painel.setModo("Nenhum");
+                
+                try{
+                    painel.rotacionarForma(Float.parseFloat(JOptionPane.showInputDialog(getParent(),"Digite a rotação desejada", null)));
+                }catch (Exception e){}
             }
         } 
     }

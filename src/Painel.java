@@ -73,8 +73,21 @@ public class Painel extends JPanel {
         pontos.clear();
     }
     
+    public String getModo(){
+        return this.modo;
+    }
+    
+    public void setFormas(ArrayList<Forma> f){
+        this.formas = f;
+    }
+    
     public ArrayList getFormas(){
         return this.formas;
+    }
+    
+    public void rotacionarForma(float angulo){
+        this.formas.get(this.camadas.getSelecionado()).rotacionar(angulo);
+        super.getParent().repaint();
     }
     
     private class MouseHandler implements MouseListener {
@@ -124,6 +137,12 @@ public class Painel extends JPanel {
         public void mouseExited(MouseEvent me) {}
 
         public void mouseClicked(MouseEvent me) {}
+    }
+    
+    private class MouseMotionHandler implements MouseMotionListener {
+        public void mouseDragged(MouseEvent me) {}
+
+        public void mouseMoved(MouseEvent me) {}
     }
     
     private class KeyHandler implements KeyListener {
