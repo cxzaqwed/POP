@@ -39,16 +39,14 @@ public class Quadrado extends Forma {
     
     public void rotacionar(float angulo){
         Double ang = Math.toRadians(angulo);
+        Ponto centro = getCentro();
         
         Ponto pontoIINovo = new Ponto();
         Ponto pontoIFNovo = new Ponto();
         Ponto pontoFINovo = new Ponto();
         Ponto pontoFFNovo = new Ponto();
         
-        int x_central = pontoII.getX() + (pontoFF.getX() - pontoII.getX()) / 2;
-        int y_central = pontoII.getY() + (pontoFF.getY() - pontoII.getY()) / 2;
-        
-        transladar(new Ponto(-x_central, -y_central));
+        transladar(centro.getReverso());
                 
         pontoIINovo.setX((int) (pontoII.getX() * Math.cos(ang) - pontoII.getY() * Math.sin(ang)));
         pontoIINovo.setY(((int) (pontoII.getY() * Math.cos(ang) + pontoII.getX() * Math.sin(ang))));
@@ -64,6 +62,10 @@ public class Quadrado extends Forma {
         this.pontoFI = pontoFINovo;
         this.pontoFF = pontoFFNovo;
         
-        transladar(new Ponto(x_central, y_central));
+        transladar(centro);
+    }
+    
+    public Ponto getCentro(){
+        return new Ponto(pontoII.getX() + (pontoFF.getX() - pontoII.getX()) / 2, pontoII.getY() + (pontoFF.getY() - pontoII.getY()) / 2);
     }
 }

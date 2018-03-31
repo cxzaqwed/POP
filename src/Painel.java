@@ -85,6 +85,11 @@ public class Painel extends JPanel {
         return this.formas;
     }
     
+    public void transladarForma(Ponto novoCentro){
+        formas.get(camadas.getSelecionado()).transladar(novoCentro.subtracao(formas.get(camadas.getSelecionado()).getCentro()));
+        super.getParent().repaint();
+    }
+    
     public void rotacionarForma(float angulo){
         this.formas.get(this.camadas.getSelecionado()).rotacionar(angulo);
         super.getParent().repaint();
@@ -127,6 +132,10 @@ public class Painel extends JPanel {
             
             else if (modo.equals("Poligono")){
                 adicionarPonto(new Ponto(me.getX(), me.getY()));
+            }
+            
+            else if (modo.equals("Translacao")){
+                transladarForma(new Ponto(me.getX(), me.getY()));
             }
         }
 

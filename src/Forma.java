@@ -11,6 +11,8 @@ public abstract class Forma {
     
     public abstract void rotacionar(float angulo);
     
+    public abstract Ponto getCentro();
+    
     public void desenhaPixel(Graphics g, int x, int y){
         g.setColor(cor);
         g.drawLine(x, y, x, y);

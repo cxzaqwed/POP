@@ -5,12 +5,15 @@ import javax.swing.*;
 public class Ferramentas extends JPanel {
     private Painel painel;
     
-    private JButton botaoReta;
-    private JButton botaoQuadrado;
-    private JButton botaoCirculo;
-    private JButton botaoPoligono;
-    private JButton botaoPolilinha;
-    private JButton botaoRotacao;
+    private ButtonGroup grupo;
+    
+    private JToggleButton botaoReta;
+    private JToggleButton botaoQuadrado;
+    private JToggleButton botaoCirculo;
+    private JToggleButton botaoPoligono;
+    private JToggleButton botaoPolilinha;
+    private JToggleButton botaoRotacao;
+    private JToggleButton botaoTranslacao;
     
     public Ferramentas(Painel p){
         super.setBackground(Color.yellow);
@@ -19,24 +22,36 @@ public class Ferramentas extends JPanel {
         ButtonHandler handler = new ButtonHandler();
           
         painel = p;
+        grupo = new ButtonGroup();
         
-        botaoReta = new JButton("Reta");
+        
+        botaoReta = new JToggleButton("Reta");
+        grupo.add(botaoReta);
         super.add(botaoReta);
         
-        botaoQuadrado = new JButton("Quadrado");
+        botaoQuadrado = new JToggleButton("Quadrado");
+        grupo.add(botaoQuadrado);
         super.add(botaoQuadrado);
         
-        botaoCirculo = new JButton("Circulo");
+        botaoCirculo = new JToggleButton("Circulo");
+        grupo.add(botaoCirculo);
         super.add(botaoCirculo);
         
-        botaoPoligono = new JButton("Poligono");
+        botaoPoligono = new JToggleButton("Poligono");
+        grupo.add(botaoPoligono);
         super.add(botaoPoligono);
         
-        botaoPolilinha = new JButton("Polilinha");
+        botaoPolilinha = new JToggleButton("Polilinha");
+        grupo.add(botaoPolilinha);
         super.add(botaoPolilinha);
         
-        botaoRotacao = new JButton("Rotacao");
+        botaoRotacao = new JToggleButton("Rotacao");
+        grupo.add(botaoRotacao);
         super.add(botaoRotacao);
+        
+        botaoTranslacao = new JToggleButton("Translacao");
+        grupo.add(botaoTranslacao);
+        super.add(botaoTranslacao);
         
         botaoReta.addActionListener(handler);
         botaoQuadrado.addActionListener(handler);
@@ -44,6 +59,7 @@ public class Ferramentas extends JPanel {
         botaoPoligono.addActionListener(handler);
         botaoPolilinha.addActionListener(handler);
         botaoRotacao.addActionListener(handler);
+        botaoTranslacao.addActionListener(handler);
     }
     
     public Painel getPainel(){
@@ -53,6 +69,7 @@ public class Ferramentas extends JPanel {
     private class ButtonHandler implements ActionListener{
         public void actionPerformed( ActionEvent event ){
             if(event.getActionCommand().equals("Reta")){
+                
                 painel.setModo("Reta");
             }
             else if(event.getActionCommand().equals("Quadrado")){
@@ -68,11 +85,13 @@ public class Ferramentas extends JPanel {
                 painel.setModo("Polilinha");
             }
             else if(event.getActionCommand().equals("Rotacao")){
-                painel.setModo("Nenhum");
-                
+                painel.setModo("Rotacao");
                 try{
                     painel.rotacionarForma(Float.parseFloat(JOptionPane.showInputDialog(getParent(),"Digite a rotação desejada", null)));
                 }catch (Exception e){}
+            }
+            else if(event.getActionCommand().equals("Translacao")){
+                painel.setModo("Translacao");
             }
         } 
     }

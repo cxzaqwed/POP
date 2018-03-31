@@ -141,14 +141,12 @@ public class Reta extends Forma{
     
     public void rotacionar(float angulo){
         Double ang = Math.toRadians(angulo);
+        Ponto centro = getCentro();
         
         Ponto pontoInicialNovo = new Ponto();
         Ponto pontoFinalNovo = new Ponto();
-        
-        int x_central = pontoInicial.getX() + (pontoFinal.getX() - pontoInicial.getX()) / 2;
-        int y_central = pontoInicial.getY() + (pontoFinal.getY() - pontoInicial.getY()) / 2;
-        
-        transladar(new Ponto(-x_central, -y_central));
+
+        transladar(centro.getReverso());
                 
         pontoInicialNovo.setX((int) (pontoInicial.getX() * Math.cos(ang) - pontoInicial.getY() * Math.sin(ang)));
         pontoInicialNovo.setY(((int) (pontoInicial.getY() * Math.cos(ang) + pontoInicial.getX() * Math.sin(ang))));
@@ -157,7 +155,11 @@ public class Reta extends Forma{
         
         this.pontoInicial = pontoInicialNovo;
         this.pontoFinal = pontoFinalNovo;
-        
-        transladar(new Ponto(x_central, y_central));
+
+        transladar(centro);
+    }
+    
+    public Ponto getCentro(){
+        return new Ponto(pontoInicial.getX() + (pontoFinal.getX() - pontoInicial.getX()) / 2, pontoInicial.getY() + (pontoFinal.getY() - pontoInicial.getY()) / 2);
     }
 }

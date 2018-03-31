@@ -59,6 +59,10 @@ public class Circulo extends Forma {
         return "Circulo";
     }
     
+    public Ponto getCentro(){
+        return new Ponto(pontoCentro);
+    }
+    
     public void transladar(Ponto delta){
         pontoCentro.setX(pontoCentro.getX() + delta.getX());
         pontoCentro.setY(pontoCentro.getY() + delta.getY());
