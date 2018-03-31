@@ -13,15 +13,12 @@ public class Reta extends Forma{
     }
     
     public void desenhar(Graphics g){
-        g.setColor(super.getCor()); // remover quando devolver a primitiva manual
-        g.drawLine(this.pontoInicial.getX(), this.pontoInicial.getY(), this.pontoFinal.getX(), this.pontoFinal.getY());
-        /*if (this.pontoInicial.getX() == this.pontoFinal.getX()){
-            DDA(g);
-        } else {
-            // A ideia era usar esse mas n deu muito certo
-            //Bresenham(g); 
-            algoritmoNadaAVerLentoParaDesenharRetasQueEuSoFizPqOBresenhamNaoFuncionaPraTodosOsCasos(g);
-        } */
+        //g.setColor(super.getCor()); // remover quando devolver a primitiva manual
+        //g.drawLine(this.pontoInicial.getX(), this.pontoInicial.getY(), this.pontoFinal.getX(), this.pontoFinal.getY());
+        
+        // DDA deixa buracos na reta
+        // Bresenham só funciona no primeiro octante
+        Lucas(g); // ¯\_(ツ)_/¯
     }
     
     public void DDA(Graphics g){
@@ -86,44 +83,54 @@ public class Reta extends Forma{
             super.desenhaPixel(g, x, y);
         }
     }
-    
-    public void algoritmoNadaAVerLentoParaDesenharRetasQueEuSoFizPqOBresenhamNaoFuncionaPraTodosOsCasos(Graphics g){
-        int x, y, x2, y2;
-        if (this.pontoInicial.getX() > this.pontoFinal.getX()){
-            x2 = this.pontoInicial.getX();
-            y2 = this.pontoInicial.getY();
-            x = this.pontoFinal.getX();
-            y = this.pontoFinal.getY();
-        } else {
-            x = this.pontoInicial.getX();
-            y = this.pontoInicial.getY();
-            x2 = this.pontoFinal.getX();
-            y2 = this.pontoFinal.getY();
-        }
+
+    public void Lucas (Graphics g){ // algoritmo temporário
+        // delta x e y
+        int dx = pontoFinal.getX() - pontoInicial.getX();
+        int dy = pontoFinal.getY() - pontoInicial.getY();
         
-        int dx = x2 - x;
-        int dy = y2 - y;
+        // início do loop
+        int x = pontoInicial.getX();
+        int y = pontoInicial.getY();
         
-        int incrX = (x2 > x) ? 1 : -1;
-        int incrY = (y2 > y) ? 1 : -1;
+        // define a direção dos incrementos
+        int incx = 0;
+        if (dx > 0)
+            incx = 1;
+        else if (dx < 0)
+            incx = -1;
         
-        float proporcao = (dy > dx) ? Math.abs((float) dy / (float) dx) : Math.abs((float) dx / (float) dy);
-        float erro = 0.0f;
+        // define a direção dos incrementos
+        int incy = 0;
+        if (dy > 0)
+            incy = 1;
+        else if (dy < 0)
+            incy = -1;
         
+        // faz os deltas serem positivos (para o loop funcionar)
+        dx = Math.abs(dx);
+        dy = Math.abs(dy);
+        
+        // calcula a proporção entre os deltas (a inclinação da reta)
+        float dxdy = Math.abs((float) dx / (float) dy);
+        
+        // desenha o primeiro pixel
         super.desenhaPixel(g, x, y);
-        while (x < x2){
-            if (erro < 0.5f){
-                x += incrX;
-                y += incrY;
-                erro += proporcao - 1.0f;
-            } else if (Math.abs(dy) > Math.abs(dx)){
-                y += incrY;
-                erro -= 1.0f;
-            } else {
-                x += incrX;
-                erro -= 1.0f;
+        
+        // repete enquanto existir diferença entre o x,y atual e x,y final
+        while (dx > 0 || dy > 0){
+            // caso a proporção atual seja menor que a inicial (reta inclinada demais no eixo x)
+            if ((float) dx / (float) dy < dxdy){
+                // anda no eixo y, decrementa o delta y restante
+                y += incy;
+                dy--;
+            } else { // caso contrário
+                // anda no eixo x, decrementa o delta x restante
+                x += incx;
+                dx--;
             }
             
+            // desenha o pixel no local calculado
             super.desenhaPixel(g, x, y);
         }
     }
