@@ -44,5 +44,31 @@ public class Polilinha extends Forma {
         }
     }
     
-    public void rotacionar(float angulo){}
+    public void rotacionar(float angulo){
+        Double ang = Math.toRadians(angulo);
+        
+        ArrayList<Ponto> pontosNovos = new ArrayList<>();
+        
+        int menor_x = pontos.get(0).getX(), menor_y = pontos.get(0).getY(), maior_x = pontos.get(0).getX(), maior_y = pontos.get(0).getX();
+        for(Ponto p: pontos){
+            menor_x = (p.getX() < menor_x) ? p.getX() : menor_x;
+            maior_x = (p.getX() > maior_x) ? p.getX() : maior_x;
+            menor_y = (p.getY() < menor_y) ? p.getY() : menor_y;
+            maior_y = (p.getY() > maior_y) ? p.getY() : maior_y;
+        }
+        
+        
+        int x_central = menor_x + (maior_x - menor_x) / 2;
+        int y_central = menor_y + (maior_y - menor_y) / 2;
+        
+        transladar(new Ponto(-x_central, -y_central));
+        
+        for(Ponto p: pontos){
+            pontosNovos.add(new Ponto((int) (p.getX() * Math.cos(ang) - p.getY() * Math.sin(ang)), ((int) (p.getY() * Math.cos(ang) + p.getX() * Math.sin(ang)))));
+        }
+        
+        pontos = pontosNovos;
+        
+        transladar(new Ponto(x_central, y_central));
+    }
 }
