@@ -59,5 +59,10 @@ public class Circulo extends Forma {
         return "Circulo";
     }
     
-    public void rotacionar(float angulo){}
+    public void transladar(Ponto delta){
+        pontoCentro.setX(pontoCentro.getX() + delta.getX());
+        pontoCentro.setY(pontoCentro.getY() + delta.getY());
+    }
+    
+    public void rotacionar(float angulo){} // rotação de círculo não faz sentido :p
 }

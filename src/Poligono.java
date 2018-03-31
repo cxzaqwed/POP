@@ -39,5 +39,12 @@ public class Poligono extends Forma {
         this.pontos.remove(p);
     }
     
+    public void transladar(Ponto delta){
+        for(Ponto p: pontos){
+            p.setX(p.getX() + delta.getX());
+            p.setY(p.getY() + delta.getY());
+        }
+    }
+    
     public void rotacionar(float angulo){}
 }

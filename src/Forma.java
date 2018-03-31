@@ -7,6 +7,8 @@ public abstract class Forma {
     
     public abstract void desenhar(Graphics g);
     
+    public abstract void transladar(Ponto delta);
+    
     public abstract void rotacionar(float angulo);
     
     public void desenhaPixel(Graphics g, int x, int y){

@@ -132,5 +132,32 @@ public class Reta extends Forma{
         return "Reta";
     }
     
-    public void rotacionar(float angulo){}
+    public void transladar(Ponto delta){
+        pontoInicial.setX(pontoInicial.getX() + delta.getX());
+        pontoInicial.setY(pontoInicial.getY() + delta.getY());
+        pontoFinal.setX(pontoFinal.getX() + delta.getX());
+        pontoFinal.setY(pontoFinal.getY() + delta.getY());
+    }
+    
+    public void rotacionar(float angulo){
+        Double ang = Math.toRadians(angulo);
+        
+        Ponto pontoInicialNovo = new Ponto();
+        Ponto pontoFinalNovo = new Ponto();
+        
+        int x_central = pontoInicial.getX() + (pontoFinal.getX() - pontoInicial.getX()) / 2;
+        int y_central = pontoInicial.getY() + (pontoFinal.getY() - pontoInicial.getY()) / 2;
+        
+        transladar(new Ponto(-x_central, -y_central));
+                
+        pontoInicialNovo.setX((int) (pontoInicial.getX() * Math.cos(ang) - pontoInicial.getY() * Math.sin(ang)));
+        pontoInicialNovo.setY(((int) (pontoInicial.getY() * Math.cos(ang) + pontoInicial.getX() * Math.sin(ang))));
+        pontoFinalNovo.setX((int) (pontoFinal.getX() * Math.cos(ang) - pontoFinal.getY() * Math.sin(ang)));
+        pontoFinalNovo.setY(((int) (pontoFinal.getY() * Math.cos(ang) + pontoFinal.getX() * Math.sin(ang))));
+        
+        this.pontoInicial = pontoInicialNovo;
+        this.pontoFinal = pontoFinalNovo;
+        
+        transladar(new Ponto(x_central, y_central));
+    }
 }
