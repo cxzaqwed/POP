@@ -13,6 +13,8 @@ public abstract class Forma {
     
     public abstract void rotacionar(float angulo);
     
+    public abstract void rasterizar(Tela t);
+    
     public abstract Ponto getCentro();
     
     public void desenhaPixel(Graphics g, int x, int y){

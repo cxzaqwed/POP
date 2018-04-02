@@ -22,6 +22,13 @@ public class Quadrado extends Forma {
         new Reta(this.pontoIF, this.pontoFF, super.getCor()).desenhar(g);
     }
     
+    public void rasterizar(Tela t){
+        new Reta(this.pontoII, this.pontoIF, super.getCor()).rasterizar(t);
+        new Reta(this.pontoFI, this.pontoFF, super.getCor()).rasterizar(t);
+        new Reta(this.pontoII, this.pontoFI, super.getCor()).rasterizar(t);
+        new Reta(this.pontoIF, this.pontoFF, super.getCor()).rasterizar(t);
+    }
+    
     public String getNome(){
         return "Quadrado";
     }

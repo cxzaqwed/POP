@@ -61,6 +61,22 @@ public class Polilinha extends Forma {
         transladar(centro);
     }
     
+    public void rasterizar(Tela t){
+        int i = 0;
+        
+        // Polilinha com 2 pontos é exatamente uma reta
+        if (pontos.size() == 2){
+            new Reta(pontos.get(0), pontos.get(1), super.getCor()).rasterizar(t);
+        } 
+        // Polilinha com menos de 3 pontos não é desenhada, com 3 ou mais pontos é desenhada
+        else {
+            while (i < pontos.size() - 1){
+                new Reta(pontos.get(i), pontos.get(i + 1), super.getCor()).rasterizar(t);
+                i++;
+            }
+        }
+    }
+    
     public Ponto getCentro(){
         int menor_x = pontos.get(0).getX(), menor_y = pontos.get(0).getY(), maior_x = pontos.get(0).getX(), maior_y = pontos.get(0).getX();
         

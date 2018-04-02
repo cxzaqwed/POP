@@ -16,6 +16,8 @@ public class Ferramentas extends JPanel {
     private JToggleButton botaoTranslacao;
     private JToggleButton botaoCores;
     private JToggleButton botaoEscala;
+    private JToggleButton botaoRasterizar;
+    private JToggleButton botaoPreencher;
     
     public Ferramentas(Painel p){
         super.setBackground(Color.yellow);
@@ -63,6 +65,14 @@ public class Ferramentas extends JPanel {
         grupo.add(botaoEscala);
         super.add(botaoEscala);
         
+        botaoRasterizar = new JToggleButton("Rasterizar");
+        grupo.add(botaoRasterizar);
+        super.add(botaoRasterizar);
+        
+        botaoPreencher = new JToggleButton("Preencher");
+        grupo.add(botaoPreencher);
+        super.add(botaoPreencher);
+        
         botaoReta.addActionListener(handler);
         botaoQuadrado.addActionListener(handler);
         botaoCirculo.addActionListener(handler);
@@ -72,6 +82,8 @@ public class Ferramentas extends JPanel {
         botaoTranslacao.addActionListener(handler);
         botaoCores.addActionListener(handler);
         botaoEscala.addActionListener(handler);
+        botaoRasterizar.addActionListener(handler);
+        botaoPreencher.addActionListener(handler);
     }
     
     public Painel getPainel(){
@@ -109,6 +121,7 @@ public class Ferramentas extends JPanel {
                                 try{
                 Color newColor = JColorChooser.showDialog(
                      painel,"Choose Background Color",painel.getBackground());
+                painel.setCor(newColor);
                 painel.colorir(newColor);
 
                 }catch (Exception e) {
@@ -120,7 +133,15 @@ public class Ferramentas extends JPanel {
                     painel.escalarForma(Float.parseFloat(JOptionPane.showInputDialog(getParent(),"Digite a rotação desejada", null)));
                 }catch (Exception e){}
             }
-            
+            else if(event.getActionCommand().equals("Rasterizar")){
+                painel.setModo("Rasterização");
+                try {
+                    painel.rasterizarForma();
+                } catch(Exception e) {}
+            }
+            else if(event.getActionCommand().equals("Preencher")){
+                painel.setModo("Preencher");
+            }
         } 
     }
 }

@@ -21,6 +21,10 @@ public class Reta extends Forma{
         Lucas(g); // ¯\_(ツ)_/¯
     }
     
+    public void rasterizar(Tela t){
+        Lucas(t);
+    }
+    
     public void DDA(Graphics g){
         float x = (float) this.pontoInicial.getX();
         float y = (float) this.pontoInicial.getY();
@@ -132,6 +136,57 @@ public class Reta extends Forma{
             
             // desenha o pixel no local calculado
             super.desenhaPixel(g, x, y);
+        }
+    }
+    
+    public void Lucas (Tela t){ // algoritmo temporário
+        // delta x e y
+        int dx = pontoFinal.getX() - pontoInicial.getX();
+        int dy = pontoFinal.getY() - pontoInicial.getY();
+        
+        // início do loop
+        int x = pontoInicial.getX();
+        int y = pontoInicial.getY();
+        
+        // define a direção dos incrementos
+        int incx = 0;
+        if (dx > 0)
+            incx = 1;
+        else if (dx < 0)
+            incx = -1;
+        
+        // define a direção dos incrementos
+        int incy = 0;
+        if (dy > 0)
+            incy = 1;
+        else if (dy < 0)
+            incy = -1;
+        
+        // faz os deltas serem positivos (para o loop funcionar)
+        dx = Math.abs(dx);
+        dy = Math.abs(dy);
+        
+        // calcula a proporção entre os deltas (a inclinação da reta)
+        float dxdy = Math.abs((float) dx / (float) dy);
+        
+        // desenha o primeiro pixel
+        t.desenhaPixel(x, y, super.getCor());
+        
+        // repete enquanto existir diferença entre o x,y atual e x,y final
+        while (dx > 0 || dy > 0){
+            // caso a proporção atual seja menor que a inicial (reta inclinada demais no eixo x)
+            if ((float) dx / (float) dy < dxdy){
+                // anda no eixo y, decrementa o delta y restante
+                y += incy;
+                dy--;
+            } else { // caso contrário
+                // anda no eixo x, decrementa o delta x restante
+                x += incx;
+                dx--;
+            }
+            
+            // desenha o pixel no local calculado
+            t.desenhaPixel(x, y, super.getCor());
         }
     }
     

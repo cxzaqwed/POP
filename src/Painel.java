@@ -8,10 +8,11 @@ public class Painel extends JPanel {
 
     private Camadas camadas;
 
+    private Tela tela = new Tela();
     private ArrayList<Forma> formas = new ArrayList<>();
     private ArrayList<Ponto> pontos = new ArrayList<>();
 
-    private Color cor = Color.red;
+    private Color cor = Color.black;
     private String modo = "Reta";
 
     public Painel(Camadas c) {
@@ -28,6 +29,8 @@ public class Painel extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
+        tela.desenhar(g);
+        
         for (Forma f : formas) {
             f.desenhar(g);
         }
@@ -37,6 +40,10 @@ public class Painel extends JPanel {
             new Circulo(p, 3, Color.black).desenhar(g);
             new Circulo(p, 5, Color.white).desenhar(g);
         }
+    }
+    
+    public void setCor(Color c){
+        cor = c;
     }
 
     public void adicionarPonto(Ponto p) {
@@ -100,11 +107,23 @@ public class Painel extends JPanel {
         formas.get(camadas.getSelecionado()).escalar(proporcao);
         super.getParent().repaint();
     }
+    
+    public void rasterizarForma(){
+        formas.get(camadas.getSelecionado()).rasterizar(tela);
+        formas.remove(camadas.getSelecionado());
+        camadas.removerCamada(camadas.getSelecionado());
+        super.getParent().repaint();
+    }
 
     public void colorir(Color cor) {
         this.formas.get(this.camadas.getSelecionado()).setCor(cor);
         super.getParent().repaint();
 
+    }
+    
+    public void preencherCor(int x, int y){
+        tela.preencherCor(x, y, cor);
+        super.getParent().repaint();
     }
 
     private class MouseHandler implements MouseListener {
@@ -140,6 +159,8 @@ public class Painel extends JPanel {
                 adicionarPonto(new Ponto(me.getX(), me.getY()));
             } else if (modo.equals("Translacao")) {
                 transladarForma(new Ponto(me.getX(), me.getY()));
+            } else if (modo.equals("Preencher")) {
+                preencherCor(me.getX(), me.getY());
             }
         }
 
