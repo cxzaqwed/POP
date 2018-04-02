@@ -68,4 +68,31 @@ public class Quadrado extends Forma {
     public Ponto getCentro(){
         return new Ponto(pontoII.getX() + (pontoFF.getX() - pontoII.getX()) / 2, pontoII.getY() + (pontoFF.getY() - pontoII.getY()) / 2);
     }
+    
+    public void escalar(float proporcao){
+        Ponto centro = getCentro();
+        
+        transladar(centro.getReverso());
+        
+        Ponto pontoIINovo = new Ponto();
+        Ponto pontoIFNovo = new Ponto();
+        Ponto pontoFINovo = new Ponto();
+        Ponto pontoFFNovo = new Ponto();
+        
+        pontoIINovo.setX((int) (pontoII.getX() * proporcao));
+        pontoIINovo.setY((int) (pontoII.getY() * proporcao));
+        pontoIFNovo.setX((int) (pontoIF.getX() * proporcao));
+        pontoIFNovo.setY((int) (pontoIF.getY() * proporcao));
+        pontoFINovo.setX((int) (pontoFI.getX() * proporcao));
+        pontoFINovo.setY((int) (pontoFI.getY() * proporcao));
+        pontoFFNovo.setX((int) (pontoFF.getX() * proporcao));
+        pontoFFNovo.setY((int) (pontoFF.getY() * proporcao));
+        
+        this.pontoII = pontoIINovo;
+        this.pontoIF = pontoIFNovo;
+        this.pontoFI = pontoFINovo;
+        this.pontoFF = pontoFFNovo;
+        
+        transladar(centro);
+    }
 }

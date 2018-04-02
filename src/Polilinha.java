@@ -73,4 +73,20 @@ public class Polilinha extends Forma {
         
         return new Ponto(menor_x + (maior_x - menor_x) / 2, menor_y + (maior_y - menor_y) / 2);
     }
+    
+    public void escalar(float proporcao){
+        Ponto centro = getCentro();
+        
+        ArrayList<Ponto> pontosNovos = new ArrayList<>();
+        
+        transladar(centro.getReverso());
+        
+        for(Ponto p: pontos){
+            pontosNovos.add(new Ponto((int) (p.getX() * proporcao), ((int) (p.getY() * proporcao))));
+        }
+        
+        pontos = pontosNovos;
+        
+        transladar(centro);
+    }
 }

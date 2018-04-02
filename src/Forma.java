@@ -9,6 +9,8 @@ public abstract class Forma {
     
     public abstract void transladar(Ponto delta);
     
+    public abstract void escalar(float proporcao);
+    
     public abstract void rotacionar(float angulo);
     
     public abstract Ponto getCentro();

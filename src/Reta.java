@@ -169,4 +169,23 @@ public class Reta extends Forma{
     public Ponto getCentro(){
         return new Ponto(pontoInicial.getX() + (pontoFinal.getX() - pontoInicial.getX()) / 2, pontoInicial.getY() + (pontoFinal.getY() - pontoInicial.getY()) / 2);
     }
+    
+    public void escalar(float proporcao){
+        Ponto centro = getCentro();
+        
+        Ponto pontoInicialNovo = new Ponto();
+        Ponto pontoFinalNovo = new Ponto();
+
+        transladar(centro.getReverso());
+                
+        pontoInicialNovo.setX((int) (pontoInicial.getX() * proporcao));
+        pontoInicialNovo.setY(((int) (pontoInicial.getY() * proporcao)));
+        pontoFinalNovo.setX((int) (pontoFinal.getX() * proporcao));
+        pontoFinalNovo.setY(((int) (pontoFinal.getY() * proporcao)));
+        
+        this.pontoInicial = pontoInicialNovo;
+        this.pontoFinal = pontoFinalNovo;
+
+        transladar(centro);
+    }
 }

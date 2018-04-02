@@ -14,6 +14,8 @@ public class Ferramentas extends JPanel {
     private JToggleButton botaoPolilinha;
     private JToggleButton botaoRotacao;
     private JToggleButton botaoTranslacao;
+    private JToggleButton botaoCores;
+    private JToggleButton botaoEscala;
     
     public Ferramentas(Painel p){
         super.setBackground(Color.yellow);
@@ -53,6 +55,14 @@ public class Ferramentas extends JPanel {
         grupo.add(botaoTranslacao);
         super.add(botaoTranslacao);
         
+        botaoCores = new JToggleButton("Cores");
+        grupo.add(botaoCores);
+        super.add(botaoCores);
+        
+        botaoEscala = new JToggleButton("Escala");
+        grupo.add(botaoEscala);
+        super.add(botaoEscala);
+        
         botaoReta.addActionListener(handler);
         botaoQuadrado.addActionListener(handler);
         botaoCirculo.addActionListener(handler);
@@ -60,6 +70,8 @@ public class Ferramentas extends JPanel {
         botaoPolilinha.addActionListener(handler);
         botaoRotacao.addActionListener(handler);
         botaoTranslacao.addActionListener(handler);
+        botaoCores.addActionListener(handler);
+        botaoEscala.addActionListener(handler);
     }
     
     public Painel getPainel(){
@@ -93,6 +105,22 @@ public class Ferramentas extends JPanel {
             else if(event.getActionCommand().equals("Translacao")){
                 painel.setModo("Translacao");
             }
+            else if(event.getActionCommand().equals("Cores")){
+                                try{
+                Color newColor = JColorChooser.showDialog(
+                     painel,"Choose Background Color",painel.getBackground());
+                painel.colorir(newColor);
+
+                }catch (Exception e) {
+                }
+            }
+            else if(event.getActionCommand().equals("Escala")){
+                painel.setModo("Escala");
+                try{
+                    painel.escalarForma(Float.parseFloat(JOptionPane.showInputDialog(getParent(),"Digite a rotação desejada", null)));
+                }catch (Exception e){}
+            }
+            
         } 
     }
 }

@@ -69,4 +69,8 @@ public class Circulo extends Forma {
     }
     
     public void rotacionar(float angulo){} // rotação de círculo não faz sentido :p
+    
+    public void escalar(float proporcao){
+        raio *= proporcao;
+    }
 }
